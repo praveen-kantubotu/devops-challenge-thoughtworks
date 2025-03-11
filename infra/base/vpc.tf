@@ -1,9 +1,13 @@
+locals {
+  created_by = "infra-${var.prefix}/base"   # added this
+}
+
 # Define a vpc
 resource "aws_vpc" "vpc" {
   cidr_block = "10.5.0.0/16"
   tags = {
     Name = "${var.prefix}"
-    createdBy = "infra-${var.prefix}/base"
+    createdBy = local.created_by   # modified this
   }
 }
 
@@ -22,7 +26,7 @@ resource "aws_route_table" "public_subnet_routes" {
   }
   tags = {
     Name = "Public subnet routing table"
-    createdBy = "infra-${var.prefix}/base"
+    createdBy = local.created_by
   }
 }
 
@@ -31,7 +35,7 @@ resource "aws_internet_gateway" "gw" {
   vpc_id = "${aws_vpc.vpc.id}"
   tags = {
     Name = "Public gateway"
-    createdBy = "infra-${var.prefix}/base"
+    createdBy = local.created_by
   }
 }
 
@@ -41,7 +45,7 @@ resource "aws_subnet" "public_subnet_a" {
   availability_zone = "${var.region}a"
   tags = {
     Name = "Public subnet A"
-    createdBy = "infra-${var.prefix}/base"
+    createdBy = local.created_by
   }
 }
 
@@ -57,7 +61,7 @@ resource "aws_subnet" "public_subnet_b" {
   availability_zone = "${var.region}b"
   tags = {
     Name = "Public subnet B"
-    createdBy = "infra-${var.prefix}/base"
+    createdBy = local.created_by
   }
 }
 
