@@ -9,6 +9,6 @@ provider "aws" {
 terraform {
   backend "s3" {
     region = "eu-west-1"
-    key = "base/terraform.tfstate"
+    key = "base/terraform.tfstate"  # add dynamodb for statelocking using the table
   }
 }
