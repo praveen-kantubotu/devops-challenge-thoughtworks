@@ -1,6 +1,6 @@
 resource "aws_ecr_repository" "quotes" {
   name         = "${var.prefix}-quotes"
-  force_delete = true
+  force_delete = true  # remove force delete for accidental deletion
 }
 
 resource "aws_ecr_repository" "newsfeed" {
@@ -26,7 +26,7 @@ resource "aws_ssm_parameter" "ecr" {
 }
 
 resource "local_file" "ecr" {
-  filename = "${path.module}/../ecr-url.txt"
+  filename = "${path.module}/../ecr-url.txt"  # what is the use of this ecr txt file
   content = local.ecr_url
 }
 
