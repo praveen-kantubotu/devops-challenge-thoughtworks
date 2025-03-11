@@ -16,7 +16,7 @@ resource "aws_iam_role" "news_host" {
 
 resource "aws_iam_role_policy_attachment" "ecr_read_attach" {
   role       = "${aws_iam_role.news_host.name}"
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"    # use readonly instead of full access arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
 }
 
 resource "aws_iam_instance_profile" "news_host" {
